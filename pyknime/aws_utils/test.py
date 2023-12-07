@@ -1,3 +1,3 @@
-import pyknime
+import get_s3_session
 
-pyknime.get_s3_sessions()
+get_s3_session.get_s3_session()
