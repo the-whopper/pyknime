@@ -7,7 +7,7 @@ setup(
     url='https://github.com/the-whopper/pyknime',
     author='Andrew',
     license="MIT",
-    packages=['aws_utils'],
+    packages=find_packages(),
     install_requires=['boto3'],
     python_requires=">=3.9",
 )
