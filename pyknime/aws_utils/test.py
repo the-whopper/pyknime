@@ -1,4 +1,3 @@
-import get_s3_session 
+import pyknime
 
-get_s3_session.get_s3_session()
-
+pyknime.aws_utils.get_s3_session()
