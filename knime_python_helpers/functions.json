@@ -1,0 +1,18 @@
+[
+    {
+        "name": "run_subprocess",
+        "function": "def run_subprocess(command, capture_output=False):\n    \"\"\"\n    Utility function to run subprocess commands with error handling.\n    \"\"\"\n    import subprocess\n    import logging\n    \n    try:\n        result = subprocess.run(\n            command, capture_output=capture_output, text=True, check=True\n        )\n        return result\n    except subprocess.CalledProcessError as e:\n        logging.error(f\"Command failed: {' '.join(command)}\")\n        logging.error(f\"Error output: {e.stderr if e.stderr else 'None'}\")\n        raise"
+    },
+    {
+        "name": "get_conda_directory_path",
+        "function": "def get_conda_directory_path():\n    \"\"\"\n    Fetch the conda/mamba directory path from KNIME configuration.\n    \"\"\"\n\n    import os\n    import logging\n    import knime.scripting.io as knio   \n\n    try:\n        pref = '.metadata/.plugins/org.eclipse.core.runtime/.settings/org.knime.conda.prefs'\n        knime_conda_pref = os.path.join(knio.flow_variables[\"knime.workspace\"], pref)\n        with open(knime_conda_pref, 'r') as file:\n            for line in file:\n                if line.startswith(\"condaDirectoryPath=\"):\n                    conda_path =  line.split('=')[1].strip() + 'bin/mamba'\n    except Exception as e:\n        logging.error(f\"Failed to retrieve Conda directory path: {e}\")\n        raise\n\n    \"\"\"\n    Determine the path to the conda/mamba executable.\n    \"\"\"\n    try:\n        # Try using mamba directly\n        knime_helper_functions['run_subprocess'](['mamba', 'env', 'list'])\n        print('use mamba directly')\n        return 'mamba'\n    except Exception:\n        # Fallback to KNIME config\n        print('use knime config')\n        return conda_path"
+    },
+    {
+        "name": "check_conda_env_exists",
+        "function": "def check_conda_env_exists(conda_path, env_name):\n    \"\"\"\n    Check if a conda environment with the given name exists.\n    \"\"\"\n    result = knime_helper_functions['run_subprocess']([conda_path,'env', 'list'], capture_output=True)\n    return env_name in result.stdout"
+    },
+    {
+        "name": "get_conda_env_path",
+        "function": "def get_conda_env_path(conda_path, env_name):\n    \"\"\"\n    Retrieve the active Conda environment path by running the command within the specified environment.\n\n    Args:\n        conda_path (str): Path to the Conda/Mamba executable.\n        env_name (str): Name of the Conda environment.\n\n    Returns:\n        str: The path to the active Conda environment or an error message.\n    \"\"\"\n    import json\n    import logging\n\n    try:\n        # Run the 'conda info --json' command in the specified environment\n        output = knime_helper_functions['run_subprocess'](\n            [conda_path, 'run', '-n', env_name, 'conda', 'info', '--json'],\n            capture_output=True\n        )\n        data = json.loads(output.stdout)\n        return data.get(\"active_prefix\", \"No active environment\")\n    except Exception as e:\n        logging.error(f\"Failed to retrieve Conda environment path for '{env_name}': {e}\")\n        return \"Error retrieving active environment path.\""
+    }
+]
