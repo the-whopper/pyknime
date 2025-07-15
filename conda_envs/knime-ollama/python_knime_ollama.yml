@@ -12,7 +12,8 @@ dependencies:                         # List of packages that should be installe
   - knime-python-base=5.4
   - knime-python-scripting=5.4 
 
-  #Ollama and Chroma 
+  #Ollama,Chroma, Jinja2
   - pip:
     - ollama
     - chromadb
+    - Jinja2
