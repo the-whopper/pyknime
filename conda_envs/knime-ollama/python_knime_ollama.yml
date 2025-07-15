@@ -17,3 +17,4 @@ dependencies:                         # List of packages that should be installe
     - ollama
     - chromadb
     - Jinja2
+    - jsonschema
