@@ -1,0 +1,22 @@
+name: knime_python_bedrock            # Name of the created environment
+channels:                             # Repositories to search for packages
+  - conda-forge
+  - knime                             # conda search knime-python-base -c knime --info
+dependencies:                         # List of packages that should be installed
+  # Python
+  - python=3.11
+  - pip
+  - ipykernel
+
+  # KNIME Python integration
+  - knime-python-base=5.4
+  - knime-python-scripting=5.4
+  - boto3=1.39
+
+  #duckdb,Chroma, Jinja2, Pydantic
+  - pip:
+    - "duckdb~=1.3.0"
+    - chromadb
+    - Jinja2
+    - jsonschema
+    - pydantic
