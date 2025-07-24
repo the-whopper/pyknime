@@ -1,4 +1,4 @@
-name: knime_python_bedrock            # Name of the created environment
+name: python_knime_bedrock            # Name of the created environment
 channels:                             # Repositories to search for packages
   - conda-forge
   - knime                             # conda search knime-python-base -c knime --info
