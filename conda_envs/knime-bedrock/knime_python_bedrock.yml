@@ -20,3 +20,4 @@ dependencies:                         # List of packages that should be installe
     - Jinja2
     - jsonschema
     - pydantic
+    - cloudpickle
