@@ -9,11 +9,11 @@ dependencies:                         # List of packages that should be installe
   - ipykernel
 
   # KNIME Python integration
-  - knime-python-base=5.4
-  - knime-python-scripting=5.4
+  - knime-python-base=5.5
+  - knime-python-scripting=5.5
 
   # AWS
-  - boto3=1.39
+  - boto3=1.40
 
   #
   - pip:
@@ -24,3 +24,4 @@ dependencies:                         # List of packages that should be installe
     - pydantic
     - cloudpickle
     - aws-bedrock-token-generator
+    - pyrhubarb
