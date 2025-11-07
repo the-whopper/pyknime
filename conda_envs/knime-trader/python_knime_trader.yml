@@ -14,7 +14,8 @@ dependencies:                         # List of packages that should be installe
 
   # AWS
   - boto3=1.40
-
+  # numpy
+  - numpy
   #
   - pip:
     - "duckdb~=1.3.0"
