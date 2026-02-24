@@ -9,13 +9,8 @@ dependencies:                         # List of packages that should be installe
   - pip
   # Knime
   - knime-python-base=5.5
-  - knime-python-scripting=5.5        # dependencies of KNIME - Python integration
-                            
-  # Pip-installed dependencies
-  #Autogluon
-  - autogluon=1.5
-
+  - knime-python-scripting=5.5        # dependencies of KNIME - Python integration                       
+  
   - pip:
-    - fs
-    - cloudpickle      # used to move objects between python nodes in knime
-    - "duckdb~=1.3.0"
+    - uv
+
