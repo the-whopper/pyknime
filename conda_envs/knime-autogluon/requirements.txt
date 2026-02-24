@@ -1,3 +1,5 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 autogluon==1.5
 autogluon.tabular[tabicl,tabpfn,realmlp,interpret,imodels]==1.5
 fs
