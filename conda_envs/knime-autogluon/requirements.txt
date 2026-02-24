@@ -1,0 +1,5 @@
+autogluon==1.5
+autogluon.tabular[tabicl,tabpfn,realmlp,interpret,imodels]==1.5
+fs
+dill
+duckdb~=1.3.0
